@@ -30,6 +30,8 @@ Express()
       }
     })
     
+    console.log(data)
+    
     res.render('index', {
       data
     })
