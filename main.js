@@ -20,7 +20,16 @@ Express()
       return
     }
     
-    let data = await fs.readdirSync('../public-dir')
+    let data = await fs.readdirSync('../public-dir').map(async x => {
+      let stats = await fs.statSync('../public-dir/' + x)
+      let sizes = stats.size / (1024 * 1024)
+      
+      return {
+        name: x,
+        size: `${sizes}M`
+      }
+    })
+    
     res.render('index', {
       data
     })
