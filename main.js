@@ -20,9 +20,9 @@ Express()
       return
     }
     
-    let data = await fs.readdirSync('../public-dir').map(async x => {
-      let stats = await fs.statSync('../public-dir/' + x)
-      let sizes = stats.size / (1024 * 1024)
+    let data = await fs.readdirSync('../public-dir').map(x => {
+      let stats = fs.statSync('../public-dir/' + x)
+      let sizes = parseFloat((stats.size / (1024 * 1024)).toString()).toFixed(2)
       
       return {
         name: x,
