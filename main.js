@@ -2,6 +2,7 @@
 
 const fs = require('fs')
 const Express = require('express')
+const isbot = require('isbot')
 
 Express()
   .set('view engine', 'pug')
@@ -9,6 +10,13 @@ Express()
   .use(Express.static('../public-dir'))
   
   .get('/', async (req, res) => {
+    let ua = req.get('user-agent')
+    
+    if ( isbot(ua) ) {
+      res.end('404: do you like hentai?')
+      return
+    }
+    
     if ( req.query.f !== undefined ) {
       try {
         res.download(`../public-dir/${req.query.f}`)
