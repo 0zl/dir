@@ -9,11 +9,25 @@ Express()
   .use(Express.static('../public-dir'))
   
   .get('/', async (req, res) => {
-    let data = await fs.readdirSync('../public-dir')
+    if ( req.query.f !== undefined ) {
+      try {
+        res.download(`../public-dir/${req.query.f}`)
+        console.log(`[ # ] ${req.query.f}`)
+      } catch {
+        res.end('404: do you like hentai?')
+      }
+      
+      return
+    }
     
+    let data = await fs.readdirSync('../public-dir')
     res.render('index', {
       data
     })
+  })
+  
+  .get('*', (req, res) => {
+    res.end('404: do you like hentai?')
   })
   
   .listen(8910, () => console.log('[ # ] Port 8910'))
