@@ -1,8 +1,27 @@
 html
   head
     title Dir - Rygnaizer Server
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    style(type="text/css").
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      h4, a {
+        font-family: "monospace";
+      }
+      
+      a {
+        text-decoration: none;
+        color: rgba(0, 0, 0, .7);
+        margin-left: 10px;
+        margin-bottom: 3px;
+      }
+      
   body
     h4 Rygna Server
     br
     for v in data
-      a(href=`/?f=${v}` target="__blank") #{v}
+      a(href=`/?f=${v}` target="__blank") - #{v}

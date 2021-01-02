@@ -26,7 +26,7 @@ Express()
     })
   })
   
-  .get('*', (req, res) => {
+  .all('*', (req, res) => {
     res.end('404: do you like hentai?')
   })
   
