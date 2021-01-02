@@ -26,11 +26,9 @@ Express()
       
       return {
         name: x,
-        size: `${sizes}M`
+        size: `${sizes}MB`
       }
     })
-    
-    console.log(data)
     
     res.render('index', {
       data
